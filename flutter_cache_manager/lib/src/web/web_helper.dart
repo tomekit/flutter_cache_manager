@@ -177,7 +177,7 @@ class WebHelper {
 
   Stream<int> _saveFile(CacheObject cacheObject, FileServiceResponse response) {
     var receivedBytesResultController = StreamController<int>();
-    unawaited(_saveFileAndPostUpdates(
+    unawaited(saveFileAndPostUpdates(
       receivedBytesResultController,
       cacheObject,
       response,
@@ -185,7 +185,7 @@ class WebHelper {
     return receivedBytesResultController.stream;
   }
 
-  Future _saveFileAndPostUpdates(
+  Future saveFileAndPostUpdates(
       StreamController<int> receivedBytesResultController,
       CacheObject cacheObject,
       FileServiceResponse response) async {
