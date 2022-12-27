@@ -71,7 +71,7 @@ class HttpGetResponse implements FileServiceResponse {
   @override
   int get statusCode => _response.statusCode;
 
-  String? _header(String name) {
+  String? header(String name) {
     return _response.headers[name];
   }
 
@@ -85,7 +85,7 @@ class HttpGetResponse implements FileServiceResponse {
   DateTime get validTill {
     // Without a cache-control header we keep the file for a week
     var ageDuration = const Duration(days: 7);
-    final controlHeader = _header(HttpHeaders.cacheControlHeader);
+    final controlHeader = header(HttpHeaders.cacheControlHeader);
     if (controlHeader != null) {
       final controlSettings = controlHeader.split(',');
       for (final setting in controlSettings) {
@@ -106,12 +106,12 @@ class HttpGetResponse implements FileServiceResponse {
   }
 
   @override
-  String? get eTag => _header(HttpHeaders.etagHeader);
+  String? get eTag => header(HttpHeaders.etagHeader);
 
   @override
   String get fileExtension {
     var fileExtension = '';
-    final contentTypeHeader = _header(HttpHeaders.contentTypeHeader);
+    final contentTypeHeader = header(HttpHeaders.contentTypeHeader);
     if (contentTypeHeader != null) {
       final contentType = ContentType.parse(contentTypeHeader);
       fileExtension = contentType.fileExtension;
