@@ -178,7 +178,7 @@ class WebHelper {
 
   Stream<int> _saveFile(CacheObject cacheObject, FileServiceResponse response) {
     final receivedBytesResultController = StreamController<int>();
-    _saveFileAndPostUpdates(
+    saveFileAndPostUpdates(
       receivedBytesResultController,
       cacheObject,
       response,
@@ -186,7 +186,7 @@ class WebHelper {
     return receivedBytesResultController.stream;
   }
 
-  Future<void> _saveFileAndPostUpdates(
+  Future<void> saveFileAndPostUpdates(
       StreamController<int> receivedBytesResultController,
       CacheObject cacheObject,
       FileServiceResponse response) async {
